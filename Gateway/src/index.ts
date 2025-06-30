@@ -9,7 +9,10 @@ const PORT = process.env.PORT || 3000;
 app.use(express.json());
 
 app.use('/user', proxy('http://localhost:8001'));
-app.use('/product', proxy('http://localhost:8002'));
+
+app.use('/products', proxy('http://localhost:8002', {
+    proxyReqPathResolver: req => `/products${req.url}`
+}));
 
 
 
