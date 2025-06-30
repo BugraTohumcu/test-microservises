@@ -3,11 +3,11 @@ import { Request , Response } from 'express';
 import dotenv from 'dotenv';
 dotenv.config();
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3002;
 
 app.use(express.json());
 
-app.get('/user',(req: Request,res: Response) => {
+app.get('/',(req: Request,res: Response) => {
     res.json({message: 'Product Service'});
 });
 
