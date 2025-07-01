@@ -9,11 +9,9 @@ export class ProductRepo{
     }
 
     // Get all products without orm
-    // getAll =  async (): Promise<QueryResult<Product[]> | undefined> => {
-    //     let sql:string = 'SELECT * FROM product';
-    //     let result = await this.con.query(sql);
-    //     return result;
-    // }
+    getAll =  async () => {
+        return await this.prisma.product.findMany();
+    }
 
     create = async (product:NewProduct) => {
         let name = product.name;

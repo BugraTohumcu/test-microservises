@@ -7,17 +7,17 @@ export class ProductController{
         this.productService = productService;
     }
 
-    // getAllProducts = async (req:Request , res: Response) => {
-    //    try{
-    //      let data = await this.productService.getProducts();
-    //      res.json(data?.rows);
-    //      console.debug('Products fetched');
-    //    }catch(err){
-    //         if(err instanceof Error){
-    //             console.error(err);
-    //         }
-    //    }
-    // }
+    getAllProducts = async (req:Request , res: Response) => {
+       try{
+         let data = await this.productService.getProducts();
+         res.json(data);
+         console.debug('Products fetched');
+       }catch(err){
+            if(err instanceof Error){
+                console.error(err);
+            }
+       }
+    }
 
     createProduct = async (req:Request , res:Response)=> {
     let newProduct: NewProduct = req.body;
