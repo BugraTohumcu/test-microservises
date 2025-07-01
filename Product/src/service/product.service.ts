@@ -1,3 +1,4 @@
+import { NewProduct } from "../dto/newProductDto";
 import { ProductRepo } from "../repository/product.repo";
 
 export class ProductService{
@@ -6,7 +7,11 @@ export class ProductService{
         this.productRepo = productRepo;
     }
 
-    getProducts = async () => {
-        return this.productRepo.getAll();
+    // getProducts = async () => {
+    //     return this.productRepo.getAll();
+    // }
+
+    createProduct = async (newProduct : NewProduct) => {
+        this.productRepo.create(newProduct);
     }
 }
