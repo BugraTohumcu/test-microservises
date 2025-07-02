@@ -1,22 +1,16 @@
 import { Request , Response , NextFunction} from "express"
-export const validateProduct =  async ( req: Request, res:Response, next: NextFunction) => {
-    let name = req.body.name;
-    let price = req.body.price;
-
-    if(!name || !price){
-        let err = new Error('Empty attributes');
-        console.error('Validation layer: '+ err);
-        next(err);
-        return;
+import { logger } from "../config/logger";
+import { body , validationResult} from 'express-validator'
+export const validateProduct = [ 
+    body('name').isString().withMessage('name must be string').notEmpty().withMessage('name is empty'),
+    body('price').isNumeric().withMessage('price must be number').notEmpty().withMessage('price is empty'),
+    ( req: Request, res:Response, next: NextFunction) => {
+        const err = validationResult(req);
+        if(!err.isEmpty()){
+            const error = new Error('Invalid Types');
+            return next(error);
+        }
+        logger.info('Product validation successfull');
+        next();
     }
-
-    if(typeof name !== 'string' || typeof price !== 'number'){
-        let err = new Error('Incorrect types');
-        console.error('Validation layer: '+ err);
-        next(err);
-        return;
-    }
-
-    console.debug('Product validation successfull');
-    next();
-}
+]

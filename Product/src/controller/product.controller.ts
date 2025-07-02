@@ -1,6 +1,7 @@
 import { Request, Response , NextFunction} from "express";
 import { ProductService } from "../service/product.service";
 import { NewProduct } from "../dto/newProductDto";
+import { logger } from "../config/logger";
 export class ProductController{
     private productService: ProductService;
     constructor(productService: ProductService){
@@ -11,7 +12,7 @@ export class ProductController{
        try{
          let data = await this.productService.getProducts();
          res.json(data);
-         console.debug('Products fetched');
+         logger.info('Products fetched');
        }catch(err){
             if(err instanceof Error){
                next(err);
@@ -23,7 +24,7 @@ export class ProductController{
     let newProduct: NewProduct = req.body;
     try{
         await this.productService.createProduct(newProduct);
-        console.debug('Product Created');
+        logger.info('Product Created');
         res.status(201).json({message: 'Created'});
     }catch(err){
         if(err instanceof Error){
@@ -36,7 +37,7 @@ export class ProductController{
         const price:number = Number(req.params.price);
         try{
             const products = await this.productService.getByPrice(price);
-            console.log('Products fetched by price');
+            logger.info('Products fetched by price');
             res.json({products : products});
         }catch(err){
             if(err instanceof Error){
