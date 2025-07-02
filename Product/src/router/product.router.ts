@@ -12,6 +12,7 @@ const productController = new ProductController(productService);
 
 router.post('/',validateProduct,productController.createProduct);
 router.get('/', productController.getAllProducts);
+router.get('/:price', productController.getProduct);
 
 export{
     router

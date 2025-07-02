@@ -6,12 +6,18 @@ export class ProductService{
     constructor(productRepo:ProductRepo){
         this.productRepo = productRepo;
     }
-
+    
     getProducts = async () => {
         return this.productRepo.getAll();
     }
-
+    
     createProduct = async (newProduct : NewProduct) => {
         this.productRepo.create(newProduct);
+    }
+
+    getByPrice = async (price : number) => {
+        const product = await this.productRepo.findByPrice(price);
+        if(!product?.length) throw new Error('Product not found!');
+        return  product;
     }
 }
