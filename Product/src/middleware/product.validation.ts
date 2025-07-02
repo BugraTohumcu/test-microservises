@@ -4,7 +4,7 @@ import { body , validationResult} from 'express-validator'
 export const validateProduct = [ 
     body('name').isString().withMessage('name must be string').notEmpty().withMessage('name is empty'),
     body('price').isNumeric().withMessage('price must be number').notEmpty().withMessage('price is empty'),
-    ( req: Request, res:Response, next: NextFunction) => {
+    (req: Request, res:Response, next: NextFunction) => {
         const err = validationResult(req);
         if(!err.isEmpty()){
             const error = new Error('Invalid Types');

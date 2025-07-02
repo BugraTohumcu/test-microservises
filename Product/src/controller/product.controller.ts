@@ -11,8 +11,8 @@ export class ProductController{
     public getAllProducts = async (req:Request , res: Response, next:NextFunction) => {
        try{
          let data = await this.productService.getProducts();
-         res.json(data);
          logger.info('Products fetched');
+         res.json(data);
        }catch(err){
             if(err instanceof Error){
                next(err);
