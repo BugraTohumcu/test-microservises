@@ -2,18 +2,18 @@ import { PrismaClient } from "@prisma/client";
 import { NewProduct } from "../dto/newProductDto";
 export class ProductRepo{
     
-    protected prisma: PrismaClient;
+    private prisma: PrismaClient;
     
     constructor(prisma:PrismaClient){
         this.prisma = new PrismaClient();
     }
     
     // Get all products without orm
-    getAll =  async () => {
+    public getAll =  async () => {
         return await this.prisma.product.findMany();
     }
     
-    create = async (product:NewProduct) => {
+    public create = async (product:NewProduct) => {
         let name = product.name ;
         let price = product.price;
         await this.prisma.product.create({
@@ -21,8 +21,7 @@ export class ProductRepo{
         });
     }
 
-
-    findByPrice = async (price: number) =>  {
+    public findByPrice = async (price: number) =>  {
         return await this.prisma.product.findMany({
             where: {
                 price :price
@@ -30,6 +29,5 @@ export class ProductRepo{
         })
     }
 
-    
 
 }
