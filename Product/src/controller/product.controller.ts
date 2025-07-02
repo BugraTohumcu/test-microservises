@@ -45,4 +45,15 @@ export class ProductController{
             }
         }
     }
+
+    public deleteProduct= async (req:Request, res:Response, next:NextFunction) => {
+        try{
+            const name = req.body.name;
+            await this.productService.deleteByName(name);
+            logger.info('Product deleted');
+            res.status(200).json({message:'Product deleted'});
+        }catch(err){
+            next(err);
+        }
+    }
 }

@@ -14,6 +14,7 @@ const productController = new ProductController(productService);
 router.post('/',validateProduct,productController.createProduct);
 router.get('/', productController.getAllProducts);
 router.get('/:price', validatePrice, productController.getProduct);
+router.delete('/',productController.deleteProduct);
 
 export{
     router

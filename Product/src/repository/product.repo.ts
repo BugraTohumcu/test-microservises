@@ -29,5 +29,20 @@ export class ProductRepo{
         })
     }
 
+    public delete = async(p_id: number | undefined) => {
+        return await this.prisma.product.delete({
+            where: {
+                id:p_id
+            }
+        })
+    }
+
+    findByName = async (pname: string) => {
+        return await this.prisma.product.findFirst({
+            where: {
+                name: pname
+            }
+        })
+    }
 
 }

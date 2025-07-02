@@ -20,4 +20,10 @@ export class ProductService{
         if(!product?.length) throw new Error('Product not found!');
         return  product;
     }
+
+    public deleteByName = async (name:string) => {
+        const product = await this.productRepo.findByName(name);
+        const id = product?.id;
+        return await this.productRepo.delete(id);
+    }
 }
