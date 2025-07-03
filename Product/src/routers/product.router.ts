@@ -6,13 +6,13 @@ import { prismaClient } from "../config/db";
 import { Router } from "express";
 import { validatePrice } from "../middleware/price.validator";
 
-export const router = Router();
+export const productRouter = Router();
 const productRepo = new ProductRepo(prismaClient);
 const productService = new ProductService(productRepo);
 const productController = new ProductController(productService);
 
-router.post('/',validateProduct,productController.createProduct);
-router.get('/', productController.getAllProducts);
-router.get('/:price', validatePrice, productController.getProduct);
-router.delete('/',productController.deleteProduct);
+productRouter.post('/',validateProduct,productController.createProduct);
+productRouter.get('/', productController.getAllProducts);
+productRouter.get('/:price', validatePrice, productController.getProduct);
+productRouter.delete('/',productController.deleteProduct);
 

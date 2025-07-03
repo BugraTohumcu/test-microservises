@@ -6,19 +6,19 @@ export class ProductError extends Error{
         super(message);
     }
 
-    public getStatus(): number {
+    getStatus(): number {
         return this.status;
     }
 
-    public setStatus(status: number): void {
+    setStatus(status: number): void {
         this.status = status;
     }
 
-    public getDetails(): any {
+    getDetails(): any {
         return this.details;
     }
 
-    public setDetails(details: any): void {
+    setDetails(details: any): void {
         this.details = details;
     }
 }

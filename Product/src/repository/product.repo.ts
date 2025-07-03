@@ -8,12 +8,11 @@ export class ProductRepo{
         this.prisma = new PrismaClient();
     }
     
-    // Get all products without orm
-    public getAll =  async () => {
+    getAll =  async () => {
         return await this.prisma.product.findMany();
     }
     
-    public create = async (product:NewProduct) => {
+    create = async (product:NewProduct) => {
         let name = product.name ;
         let price = product.price;
         await this.prisma.product.create({
@@ -21,7 +20,7 @@ export class ProductRepo{
         });
     }
 
-    public findByPrice = async (price: number) =>  {
+    findByPrice = async (price: number) =>  {
         return await this.prisma.product.findMany({
             where: {
                 price :price
@@ -29,7 +28,7 @@ export class ProductRepo{
         })
     }
 
-    public delete = async(p_id: number | undefined) => {
+    delete = async(p_id: number | undefined) => {
         return await this.prisma.product.delete({
             where: {
                 id:p_id
@@ -44,5 +43,6 @@ export class ProductRepo{
             }
         })
     }
+
 
 }

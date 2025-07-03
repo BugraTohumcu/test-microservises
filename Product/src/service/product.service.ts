@@ -3,6 +3,7 @@ import { ProductRepo } from "../repository/product.repo";
 
 export class ProductService{
     private productRepo: ProductRepo;
+    
     constructor(productRepo:ProductRepo){
         this.productRepo = productRepo;
     }
@@ -21,7 +22,7 @@ export class ProductService{
         return  product;
     }
 
-    public deleteByName = async (name:string) => {
+    deleteByName = async (name:string) => {
         const product = await this.productRepo.findByName(name);
         const id = product?.id;
         return await this.productRepo.delete(id);
