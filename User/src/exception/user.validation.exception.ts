@@ -6,19 +6,19 @@ export class UserValidationError extends Error{
         super();
     }
 
-    public getStatus(): number | undefined {
+    getStatus(): number | undefined {
         return this.status;
     }
 
-    public setStatus(status: number): void {
+    setStatus(status: number): void {
         this.status = status;
     }
 
-    public getDetalis(): any {
+    getDetalis(): any {
         return this.detalis;
     }
 
-    public setDetalis(detalis: any): void {
+     setDetalis(detalis: any): void {
         this.detalis = detalis;
     }
 }

@@ -13,7 +13,7 @@ export class ProductService{
     }
     
     createProduct = async (newProduct : NewProduct) => {
-        this.productRepo.create(newProduct);
+        await this.productRepo.create(newProduct);
     }
 
     getByPrice = async (price : number) => {

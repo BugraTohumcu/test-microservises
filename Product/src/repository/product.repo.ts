@@ -5,7 +5,7 @@ export class ProductRepo{
     private prisma: PrismaClient;
     
     constructor(prisma:PrismaClient){
-        this.prisma = new PrismaClient();
+        this.prisma = prisma;
     }
     
     getAll =  async () => {
