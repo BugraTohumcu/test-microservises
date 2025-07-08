@@ -4,8 +4,6 @@ import { logger } from './config/logger';
 import { userErrorHandler } from './handler/user.error.handler';
 import { validateUser } from './middleware/user.validation';
 import { PrismaClient } from '@prisma/client';
-import { create } from 'ts-node';
-import { textSpanContainsPosition } from 'typescript';
 dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 3001;
