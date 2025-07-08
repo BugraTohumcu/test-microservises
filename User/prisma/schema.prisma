@@ -9,13 +9,7 @@ datasource db {
 
 model User {
   id   Int    @id @default(autoincrement())
-  name String @unique
+  name String 
   age  Int
-  test Test[]
 }
 
-model Test{
-  id Int @id @default(autoincrement())
-  t_name String @db.VarChar(20) 
-  user User[]
-}
