@@ -21,22 +21,24 @@ export class UserController {
         
     }
 
-    getUsers = async (req:Request, res:Response) => {
+    getUsers = async (req:Request, res:Response, next:NextFunction) => {
         try{
             const data = await this.userService.getAllUsers();
             res.json({users: data});
         }catch(err){
             logger.error('Error accured while getting users: '+err);
+            next(err);
         }
     }
 
-    addUser = async (req: Request, res:Response) => {
+    addUser = async (req: Request, res:Response, next:NextFunction) => {
         try{
             const newUser : NewUser = req.body
             const result = await this.userService.addNewUser(newUser);
             res.json({user: result});
         }catch(err){    
             logger.info('Something went wrong: '+ err)
+            next(err);
         }
     }
 }
