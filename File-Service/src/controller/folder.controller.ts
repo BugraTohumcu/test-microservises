@@ -57,7 +57,7 @@ export class FolderController{
 
     updateFolder = async (req: Request, res:Response, next:NextFunction) => {
         try{
-            const existingFolder: UpdateFolderDTO= req.body;
+            const existingFolder: UpdateFolderDTO = req.body;
             const newFolder = await this.folderService.updateFolder(existingFolder);
             logger.info('Folder updated successfuly');
             res.json({folder: newFolder});
