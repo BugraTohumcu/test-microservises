@@ -1,16 +1,14 @@
 import { Router } from "express";
 import multer from 'multer';
-import { BlobServiceClient } from "@azure/storage-blob";
 import { Request, Response } from "express";
 const router = Router();
 const upload = multer();
 import dotenv from 'dotenv'
+import { BlobClient } from "../config/blobClient";
 dotenv.config();
 
-const connectionString = process.env.AZURE_STORAGE_CONNECTION_STRING!;
-const blobServiceClient = BlobServiceClient.fromConnectionString(connectionString);
-
-const containerName = "test-container";
+const blobServiceClient = BlobClient.getInstance();
+const containerName = 'test-container';
 
 router.post("/upload", upload.single("file"), async (req: Request, res: Response) => {
 
