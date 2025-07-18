@@ -5,6 +5,7 @@ const router = Router();
 const upload = multer();
 import dotenv from 'dotenv'
 import { BlobClient } from "../config/blobClient";
+import { UploadFile } from "../dto/file.dto/upload.file";
 dotenv.config();
 
 const blobServiceClient = BlobClient.getInstance();
@@ -12,26 +13,9 @@ const containerName = 'test-container';
 
 router.post("/upload", upload.single("file"), async (req: Request, res: Response) => {
 
+  const file:UploadFile = req.body;
+
   
-  if (!req.file) {
-    res.status(400).send("File not found!");
-    return;
-  }
-    
-  const containerClient = blobServiceClient.getContainerClient(containerName);
-  await containerClient.createIfNotExists();
-  await containerClient.setAccessPolicy('container');
-
-  const blobClient = containerClient.getBlockBlobClient(req.file.originalname);
-  const fileName = req.file.originalname;
-  await blobClient.uploadData(req.file.buffer, {
-    blobHTTPHeaders: { blobContentType: req.file.mimetype }
-  });
-
-  res.json({
-    message: "Uploaded",
-    url: `${process.env.APP_HOST}${containerName}/${fileName}`
-  });
 });
 
 

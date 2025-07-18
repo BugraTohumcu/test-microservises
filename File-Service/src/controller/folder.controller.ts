@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import { FolderService } from "../service/folder.service";
 import { CreateFolderDTO } from "../dto/folder.dto/create.folder.dto";
-import { logger } from "@azure/storage-blob";
+import { logger } from "../config/logger";
 import { UpdateFolderDTO } from "../dto/folder.dto/update.folder.dto";
 
 export class FolderController{
